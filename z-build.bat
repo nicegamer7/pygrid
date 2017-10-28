@@ -14,10 +14,6 @@ cd .\dist\pygrid\
 md platforms
 xcopy .\PyQt5\Qt\plugins\platforms\qwindows.dll .\platforms\
 
-rem (
-rem echo pygrid.exe
-rem ) > ".\pygrid\!start.bat"
-
 rem bunding into a single file
 cd ..
 "C:\Program Files\WinRAR\rar.exe" a pygrid.zip pygrid

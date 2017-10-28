@@ -1,6 +1,7 @@
 import sys
 import datetime
 
+
 # https://stackoverflow.com/questions/21341096/redirect-print-to-string-list
 class StrStream():
     def __init__(self):

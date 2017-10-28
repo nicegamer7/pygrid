@@ -99,7 +99,7 @@ The app itself is stable but I noticed two minor issues with the Grid hardware i
 * Very rarely the controller may not execute the command given to it (setting fan speed may fail or data polling may not return voltage, rpm or amperage). It may stop responding for a few seconds and then come back to life. This will be properly handled by PyGrid which will reconnect to the device, but a brief warning message may be displayed in the Status panel.
 
 ## Build
-The code works with Python 3.6 and 3.5. The executable was built with Pyinstaller 3.3 using Python 3.6. The basic dependencies were part of Anaconda distribution. The corresponding batch files for installing additional dependencies and building the executable are supplied with the source code.  Pyinstaller 3.3 has some issues handling PyQT dependencies, so one DLL had to be copied over to the dist directory in order for app to start - this is done in the batch file as part of the build process.
+The code works with Python 3.6 and 3.5. The executable was built with Pyinstaller 3.3 using Python 3.6. The basic dependencies were part of Anaconda distribution. The corresponding batch files for installing additional dependencies and building the executable are supplied with the source code.  Pyinstaller 3.3 has some issues handling PyQT dependencies, so one DLL had to be copied over to the dist directory in order for the app to start - this is done in the batch file as part of the build process.
 
 
 ## Acknowledgements

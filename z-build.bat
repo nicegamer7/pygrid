@@ -16,7 +16,7 @@ xcopy .\PyQt5\Qt\plugins\platforms\qwindows.dll .\platforms\
 
 rem bunding into a single file
 cd ..
-"C:\Program Files\WinRAR\rar.exe" a pygrid.zip pygrid
+"C:\Program Files\WinRAR\winrar.exe" a -afzip pygrid.zip pygrid
 cd ..
 
 rmdir /q /s build

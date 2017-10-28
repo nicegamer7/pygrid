@@ -73,7 +73,7 @@ A few examples of fan curves:
 
 `[60, 75], [75, 100]]` - at 60 degrees spin-up the fan to 75% speed, between 60 and 75 degrees accelerate linearly to 100%, stay at 100% beyond 75 degrees.
 
-`[[0, 75], [60, 75], [75, 100]]` - from 0 to 60 degrees keep 70% speed, then between 50 and 70 degrees accelerate linearly to 100%.
+`[[0, 75], [60, 75], [75, 100]]` - from 0 to 60 degrees keep 75% speed, then between 60 and 75 degrees accelerate linearly to 100%.
 
 `[[0, 50], [60, 50], [60, 70], [75, 100]]` - from 0 to 60 degrees keep speed flat at 50%, at 60 deg. step change to 70%, and from 60 to 75 degrees keep accelerating linearly to 100%.
 
@@ -91,7 +91,7 @@ One time-consuming operation that I was unable to optimize further is the commun
 
 PyGrid has been made resilient to external errors: if the app is unable to communicate with the Grid or with Open Hardware Monitor, it will keep retrying until communication is re-established. This allows to handle scenarios of Grid being unplugged and plugged back again, or Hardware Monitor being restarted - both events will have no effect on PyGrid continuous operation.
 
-PyGrid registers itself in the Windows registry in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` which allows to launch the executable on user login. This is controlled by "startwithwindows" option in the settings. Changing this option to *false* removes the corresponding value from the registry. Writing one value to the registry is the only way the app alters the behavior of the OS. Other than that, the app is confined to its own folder, from where it quietly does its humble job.
+PyGrid registers itself in the Windows registry in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` which allows to launch the executable on user login. This is controlled by "startwithwindows" option in the settings. Changing this option to *false* removes the corresponding value from the registry.
 
 ## Known issues
 The app itself is stable but I noticed two minor issues with the Grid hardware itself:
@@ -99,7 +99,8 @@ The app itself is stable but I noticed two minor issues with the Grid hardware i
 * Very rarely the controller may not execute the command given to it (setting fan speed may fail or data polling may not return voltage, rpm or amperage). It may stop responding for a few seconds and then come back to life. This will be properly handled by PyGrid which will reconnect to the device, but a brief warning message may be displayed in the Status panel.
 
 ## Build
-The code works in Python 3.6.1 and 3.5. The executable was built with Pyinstaller using Python 3.5. The basic dependencies were part of Anaconda distribution. The corresponding batch files for installing additional dependencies and building the executable are supplied with the source code.
+The code works with Python 3.6 and 3.5. The executable was built with Pyinstaller 3.3 using Python 3.6. The basic dependencies were part of Anaconda distribution. The corresponding batch files for installing additional dependencies and building the executable are supplied with the source code.  Pyinstaller 3.3 has some issues handling PyQT dependencies, so one DLL had to be copied over to the dist directory in order for app to start - this is done in the batch file as part of the build process.
+
 
 ## Acknowledgements
 I would like to thank [akej74](https://github.com/akej74) and [RoelGo](https://github.com/RoelGo) for the awesome work they did in the similar projects and whose source code helped me understand the way Grid operates. Project references:

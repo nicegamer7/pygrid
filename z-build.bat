@@ -1,10 +1,28 @@
 echo off
-rem The main dev environment was 3.6.1, but pyinstaller worked only with python 3.5 at the time of writing.
-rem This batch file switches temporarily to python 3.5 env, runs pyinstaller, and switches back
-call activate py35
+
 rmdir /q /s dist
 rmdir /q /s build
-call pyinstaller -F -w --icon ui\img\icon.ico pygrid.py
-rem call pyinstaller -w --icon ui\img\icon.ico pygrid.py
-call deactivate
+
+rem Bundling all DLLs in one file is a bad idea -
+rem it leaves the entire uncompressed app in the Temp folder on every restart
+rem call pyinstaller -F -w --icon ui\img\icon.ico pygrid.py
+call pyinstaller -w --icon ui\img\icon.ico pygrid.py
+
+rem Fixing the bug in pyinstaller 3.3: https://github.com/pyinstaller/pyinstaller/issues/2857
+rem Need to manually copy one library otherwize app won't start
+cd .\dist\pygrid\
+md platforms
+xcopy .\PyQt5\Qt\plugins\platforms\qwindows.dll .\platforms\
+
+rem (
+rem echo pygrid.exe
+rem ) > ".\pygrid\!start.bat"
+
+rem bunding into a single file
+cd ..
+"C:\Program Files\WinRAR\rar.exe" a pygrid.zip pygrid
+cd ..
+
+rmdir /q /s build
+
 echo on

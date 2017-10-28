@@ -1,9 +1,11 @@
 # project
 misc/
+dist/
+dist/pygrid/
 notes.txt
 pygrid.json
-gitcommit.bat
 gitconf.bat
+gitcommit.bat
 
 #vscode
 .vscode/

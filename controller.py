@@ -12,12 +12,12 @@ from util import timediff
 
 
 class Controller(QThread):
-    """Polls data from Hardware Monitor and Grid, applies control policy to fans, emits update signal to UI."""       
+    """Polls data from Libre Hardware Monitor and Grid, applies control policy to fans, emits update signal to UI."""
     ok = True
     errorMessage = ""
     appsettings = None
     settingsTS = datetime.datetime(year=1900, month=1, day=1)   # current timestamp of settings
-    
+
     current_fan_speed = []    # holds latest uploaded fan speeds. Init to -1 to ensure first write-through
     new_fan_speed     = []    # if new values are same as current, no updates are sent to Grid
     movingaverage     = []
@@ -67,7 +67,7 @@ class Controller(QThread):
                 td.now()
                 remaining = TIME_SLICE - td.ms
                 if (remaining > MAX_SLEEP): remaining = MAX_SLEEP
-                if (remaining > 0): 
+                if (remaining > 0):
                     time.sleep(remaining / 1000.0)
                     sleep_count += 1
 
@@ -75,7 +75,7 @@ class Controller(QThread):
             slice_time = td.ms
             #print ("loop={0}, exec={1}, slice={2}, sleep count={3}".format(counter, exec_time, slice_time, sleep_count))
             counter += 1
-            
+
         self.grid.close()
         self.hamon.close()
         print ("Controller has stopped")
@@ -131,12 +131,12 @@ class Controller(QThread):
                 # save the timestamp of newest settings to track further changes
                 self.settingsTS = self.appsettings.timestamp
 
-            # get recent readings from hardware monitor and apply control policy
+            # get recent readings from Libre Hardware Monitor and apply control policy
             self.hamon.update()
             if self.hamon.ok:
                 self.hamon.updateSignals(self.signals)
 
-            if (self.hamon.ok and self.grid.ok): 
+            if (self.hamon.ok and self.grid.ok):
                 self.control()
 
         # pack data into a dict for visualization, emit signal to UI
@@ -149,7 +149,7 @@ class Controller(QThread):
                 "fans": fans, "fanspeed": self.current_fan_speed[1:NFANS+1]
             }
             self.uiUpdate.emit(signalData)
-            
+
 
     def control(self):
         """Loops through all fans, applies control policy to each, sends updates to Grid"""
@@ -208,7 +208,7 @@ class Controller(QThread):
 
             tempA, speedA = (temp, 0)  # zero default speed if the curve is empty
             tempB, speedB = (temp, 0)
-            
+
             # find two points on the curve to the left and to the right of the current temp
             for i in range(0, len(curve)):
                 c = curve[i]

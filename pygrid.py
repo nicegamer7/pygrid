@@ -15,7 +15,7 @@ from hardware import list_comports, NZXTGrid, Hamon
 from util import StrStream
 
 
-APP_TITLE = "PyGrid 0.98"
+APP_TITLE = "PyGrid 0.99"
 
 
 class MainWindow(QMainWindow):
@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
         self.controller.uiUpdate.connect(self.update)
 
         startminimized = False
-        if (self.appsettings.ok):  
+        if (self.appsettings.ok):
             startminimized = self.appsettings.settings["app"]["startminimized"]
             self.controller.start()
         else:
@@ -77,11 +77,11 @@ class MainWindow(QMainWindow):
                 print(self.appsettings.errorMessage)
             self.ui.statusEdit.setStyleSheet(self.COLOR_ERR)
             self.ui.statusEdit.setPlainText(x.data)
-            
-        if (not startminimized): 
+
+        if (not startminimized):
             self.show()
             self.controller.enableUICallbacks = True
-            
+
 
     def keyPressClosure(self, uiControl):
         """Wraps event with a closure to avoid subclassing PlainTextEdit"""
@@ -207,7 +207,7 @@ class MainWindow(QMainWindow):
                 if (portsandsensors and self.appsettings.gridstats):
                     print("\nGrid reads: {0}, writes: {1}, errors: {2}".format(
                         self.controller.grid.readCount,
-                        self.controller.grid.writeCount, 
+                        self.controller.grid.writeCount,
                         self.controller.grid.errorCount))
             else:
                 self.ui.statusEdit.setStyleSheet(self.COLOR_ERR)

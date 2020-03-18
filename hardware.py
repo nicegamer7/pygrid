@@ -22,7 +22,7 @@ class NZXTGrid():
     # Get fan voltage:   84 XX                   ->  C0 00 00 NN NN
     # Get fan amperage:  85 XX                   ->  C0 00 00 NN NN
     # Get fan RPM:       8A XX                   ->  C0 00 00 RR RR
-    # 
+    #
     # Parameters:
     #   XX:    fan ID         (01, 02, 03, 04, 05, 06)
     #   NN NN: volts/amperes  (07 50: 7.80V, 02 12: 2.18 amps)
@@ -66,7 +66,7 @@ class NZXTGrid():
                 self._err("Could not open port {0}. Access denied. The port may be in use by another application.".format(port))
             else:
                 self._err(str(e))
-            
+
 
     def close(self):
         if (not self.com.closed):
@@ -79,7 +79,7 @@ class NZXTGrid():
         print (errtext)
         self.ok = False
         self.errorCount += 1
-        
+
 
     def _cmd(self, data, response_length=1):
         """Sends an arbitrary command to Grid and returns a response"""
@@ -180,7 +180,7 @@ class NZXTGrid():
 # http://timgolden.me.uk/python/wmi/cookbook.html
 
 class Hamon():
-    """Provides WMI interface to Hardware Monitor and its temperature readings"""
+    """Provides WMI interface to Libre Hardware Monitor and its temperature readings"""
     ok = True
     errorMessage = ""
     initialized = False
@@ -191,10 +191,10 @@ class Hamon():
     def __init__(self):
         try:
             CoInitialize()
-            self.hamon = wmi.WMI(namespace="root\OpenHardwareMonitor")
+            self.hamon = wmi.WMI(namespace="root\LibreHardwareMonitor")
             self.initialized = True
         except Exception as e:
-            self._err ("Error: Hardware monitor not installed.\nPlease install Hardware Monitor and restart the application.")
+            self._err ("Error: Libre Hardware Monitor not installed.\nPlease install it and restart the application.")
 
 
     def _err(self, errtext):
@@ -206,7 +206,7 @@ class Hamon():
     def update(self):
         # run only if initialization was successful
         if (self.initialized):
-            # it is possible that at boot time Hardware Monitor starts later than the app,
+            # it is possible that at boot time Libre Hardware Monitor starts later than the app,
             # so the sensor readings will not be available immediately - we need to retry until the monitor is loaded.
             self.ok = True  # reset error
 
@@ -251,9 +251,9 @@ class Hamon():
             s.update(val)
             totalsum += val
 
-        # if no readings were found assume Hardware Monitor is not (yet) running
+        # if no readings were found assume Libre Hardware Monitor is not (yet) running
         if (totalsum == 0):
-            self._err("The data from Hardware Monitor is unavailable.\nCheck if Monitor is started.")
+            self._err("The data from Libre Hardware Monitor is unavailable.\nPlease check if it is running.")
 
 
     def getSignalValue(self, fn, sensors):
@@ -273,7 +273,7 @@ class Hamon():
                     if (val > max): max = val
                     avg += val
                     count += 1
-        
+
         res = max
         if (fn == "avg"): res = avg / float(count)
         return res

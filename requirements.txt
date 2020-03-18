@@ -1,0 +1,5 @@
+PyInstaller
+pyqt5-stubs
+pyserial
+pywin32
+WMI

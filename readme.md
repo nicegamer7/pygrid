@@ -1,8 +1,8 @@
 # PyGrid
-PyGrid allows to control fan speeds using [NZXT Grid+ V2](https://www.nzxt.com/products/grid-plus-v2) device. PyGrid is a simple and stable alternative to NZXT CAM software when it comes to fan control.
+PyGrid allows you to control fan speeds using an [NZXT Grid+ V2](https://www.nzxt.com/products/grid-plus-v2). PyGrid is a simple and stable alternative to NZXT CAM software when it comes to fan control.
 
-<img src="https://github.com/andyatgh/pygrid/blob/master/screenshots/pygrid1.png">
-<img src="https://github.com/andyatgh/pygrid/blob/master/screenshots/pygrid2.png" width="320">
+<img src="https://github.com/nicegamer7/pygrid/blob/master/screenshots/pygrid1.png">
+<img src="https://github.com/nicegamer7/pygrid/blob/master/screenshots/pygrid2.png" width="320">
 
 ## PyGrid key features
 * Very simple interface, all settings are edited as text.
@@ -11,12 +11,12 @@ PyGrid allows to control fan speeds using [NZXT Grid+ V2](https://www.nzxt.com/p
 * Rich customization of temperature signals and fan curves allows lots of flexibility in fan control.
 
 ## Installation
-1. Download and launch [Open Hardware Monitor](http://openhardwaremonitor.org/downloads/). Make sure it starts with Windows. PyGrid uses temperature data from OHM.
-2. Download [PyGrid executable](https://github.com/andyatgh/pygrid/tree/master/dist) and launch it from any folder. The app will open and register itself for startup with Windows.
+1. PyGrid uses temperature data from Libre Hardware Monitor. Download and launch [Libre Hardware Monitor](https://ci.appveyor.com/project/LibreHardwareMonitor/librehardwaremonitor/build/artifacts). Make sure it starts with Windows.
+2. Download [PyGrid](https://github.com/nicegamer7/pygrid/releases) and launch it from any folder. The app will open and register itself for startup with Windows.
 3. PyGrid will initialize the settings and create default fan curves for all fans - edit them in the Settings panel, setup other parameters the way you think is best for your system, hit Ctrl+Enter, settings will be saved and applied immediately.
 
-<img src="https://github.com/andyatgh/pygrid/blob/master/screenshots/hamon1.png" width="320">
-<img src="https://github.com/andyatgh/pygrid/blob/master/screenshots/pygrid3.png" width="320">
+<img src="https://github.com/nicegamer7/pygrid/blob/master/screenshots/hamon1.png" width="320">
+<img src="https://github.com/nicegamer7/pygrid/blob/master/screenshots/pygrid3.png" width="320">
 
 
 ## PyGrid settings
@@ -99,13 +99,12 @@ The app itself is stable but I noticed two minor issues with the Grid hardware i
 * Very rarely the controller may not execute the command given to it (setting fan speed may fail or data polling may not return voltage, rpm or amperage). It may stop responding for a few seconds and then come back to life. This will be properly handled by PyGrid which will reconnect to the device, but a brief warning message may be displayed in the Status panel.
 
 ## Build
-The code works with Python 3.6 and 3.5. The executable was built with Pyinstaller 3.3 using Python 3.6. The basic dependencies were part of Anaconda distribution. The corresponding batch files for installing additional dependencies and building the executable are supplied with the source code.  Pyinstaller 3.3 has some issues handling PyQT dependencies, so one DLL had to be copied over to the dist directory in order for the app to start - this is done in the batch file as part of the build process.
-
+PyGrid is compatible with Python 3.5, 3.6, and 3.7. The required dependencies are listed in the dependencies.txt file. After those packages are installed, it is as simple as running the build.bat file.
 
 ## Acknowledgements
 I would like to thank [akej74](https://github.com/akej74) and [RoelGo](https://github.com/RoelGo) for the awesome work they did in the similar projects and whose source code helped me understand the way Grid operates. Project references:
 * [Grid Control](https://github.com/akej74/grid-control) by [akej74](https://github.com/akej74)
 * [CamSucks](https://github.com/RoelGo/CamSucks) by [RoelGo](https://github.com/RoelGo)
 
-# 
-<img src="https://github.com/andyatgh/pygrid/blob/master/ui/img/icon.png" width="96">
+#
+<img src="https://github.com/nicegamer7/pygrid/blob/master/ui/img/icon.png" width="96">

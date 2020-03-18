@@ -87,9 +87,9 @@ Every effort has been taken to make the app consume as few CPU cycles as possibl
 
 The above two tweaks actually make Grid communication overhead very light, which is different from CAM software where every second I observed heavy traffic to and from the controller.
 
-One time-consuming operation that I was unable to optimize further is the communication with Open Hardware Monitor: temperature sensor polling takes approx. 40 milliseconds, and I suspect most of the time is spent in the inter-process communication layers of the OS.
+One time-consuming operation that I was unable to optimize further is the communication with Libre Hardware Monitor: temperature sensor polling takes approx. 40 milliseconds, and I suspect most of the time is spent in the inter-process communication layers of the OS.
 
-PyGrid has been made resilient to external errors: if the app is unable to communicate with the Grid or with Open Hardware Monitor, it will keep retrying until communication is re-established. This allows to handle scenarios of Grid being unplugged and plugged back again, or Hardware Monitor being restarted - both events will have no effect on PyGrid continuous operation.
+PyGrid has been made resilient to external errors: if the app is unable to communicate with the Grid or with Libre Hardware Monitor, it will keep retrying until communication is re-established. This allows to handle scenarios of Grid being unplugged and plugged back again, or Libre Hardware Monitor being restarted - both events will have no effect on the continuous operation of PyGrid.
 
 PyGrid registers itself in the Windows registry in `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` which allows to launch the executable on user login. This is controlled by "startwithwindows" option in the settings. Changing this option to *false* removes the corresponding value from the registry.
 

@@ -1,4 +1,4 @@
-echo off
+@echo off
 
 rmdir /q /s dist
 rmdir /q /s build
